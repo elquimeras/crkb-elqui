@@ -44,6 +44,8 @@ enum {
   TD_SLA,
   TD_CAPLOCK,
   TD_ALT,
+  TD_COMM,
+  TD_DOT,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -53,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_LCTL,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,  TD(TD_PC), TD(TD_COMI),
   //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                   KC_N,    KC_M,    KC_COMM, KC_DOT,  TD(TD_SLA), RSFT_T(KC_ENT),
+     TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                   KC_N,    KC_M,    TD(TD_COMM), TD(TD_DOT),  TD(TD_SLA), RSFT_T(KC_ENT),
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                     KC_RCMD, RSFT_T(KC_ENT), LOWER,    RAISE, KC_SPC, TD(TD_ALT)
                                       //|--------------------------|  |--------------------------|
@@ -63,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
      KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU, LALT(KC_G),                   MACRO2 , RALT(KC_PSCR), XXXXXXX,   XXXXXXX, KC_UP, KC_DEL,
+     XXXXXXX, KC_AT, KC_QUOTE, XXXXXXX, KC_VOLU, LALT(KC_G),                   MACRO2 , RALT(KC_PSCR), XXXXXXX,   XXXXXXX, KC_UP, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_SLEP, XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, KC_MNXT,                     MACRO1 , KC_MYCM, XXXXXXX, KC_LEFT,  KC_DOWN, KC_RGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -73,11 +75,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_ESC,  KC_EXLM, KC_AT, LALT(KC_3), KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+     KC_ESC,  KC_EXLM, KC_QUOTE, LALT(KC_3), KC_DLR, KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,                                  KC_MINS, KC_EQL, KC_LBRC,  KC_RBRC, KC_PIPE, KC_DEL,
+     KC_GRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS, KC_EQL, RALT(KC_LBRC),  RALT(KC_RBRC), KC_PIPE, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,                               KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSLS, KC_ENT,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, RALT(KC_QUOT), RALT(KC_NUHS), KC_BSLS, KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             KC_LGUI, LOWER, KC_SPC,    KC_SPC, KC_TRNS, KC_RALT
                                       //|--------------------------|  |--------------------------|
@@ -85,11 +87,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-      XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, RGBRST, RGB_TOG,                     XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,\
+      XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, RGBRST, RGB_TOG,                     KC_F1, KC_F2,  KC_F3,   KC_F4,   KC_F5,   KC_F6,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_MOD,                      XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   RESET,  \
+     XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_MOD,                      KC_F7, KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,  \
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, XXXXXXX,                      XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,\
+     XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, XXXXXXX,                      RESET, XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          KC_LCTL, KC_TRNS, KC_SPC,    KC_SPC, KC_TRNS, KC_RALT \
                                       //|--------------------------|  |--------------------------|
@@ -101,9 +103,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for ;, twice for :
     [TD_PC] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),
     [TD_COMI] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, LSFT(KC_QUOT)),
-    [TD_SLA] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, LSFT(KC_SLSH)),
+    [TD_SLA] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_QUES),
     [TD_CAPLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
     [TD_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_LALT),
+    [TD_COMM] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_GRV),
+    [TD_DOT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, RALT(KC_DOT) )
 };
 
 int RGB_current_mode;
