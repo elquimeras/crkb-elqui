@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                   KC_N,    KC_M,    TD(TD_COMM), TD(TD_DOT),  TD(TD_SLA), RSFT_T(KC_ENT),
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    KC_RCMD, RSFT_T(KC_ENT), LOWER,    RAISE, KC_SPC, TD(TD_ALT)
+                                    KC_RCMD, KC_SPC, LOWER,    RAISE, KC_SPC, TD(TD_ALT)
                                       //|--------------------------|  |--------------------------|
   ),
 
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX, KC_AT, KC_QUOTE, XXXXXXX, KC_VOLU, LALT(KC_G),                   MACRO2 , RALT(KC_PSCR), XXXXXXX,   XXXXXXX, KC_UP, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_SLEP, XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, KC_MNXT,                     MACRO1 , KC_MYCM, XXXXXXX, KC_LEFT,  KC_DOWN, KC_RGHT,
+     KC_LSFT, XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, KC_MNXT,                     MACRO1 , KC_MYCM, XXXXXXX, KC_LEFT,  KC_DOWN, KC_RGHT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                     LCTL(KC_LALT), KC_SPC, KC_TRNS,    RAISE, KC_SPC, KC_RALT
                                       //|--------------------------|  |--------------------------|
