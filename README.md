@@ -1,6 +1,8 @@
-# Elquimera's layout for Corne based on Soundmonster
+# elquimeras custom layout for Corne Keyboard
 
-Features:
+#### Based on Soundmonster's crkb keymap
+
+### Features:
 
 - Modern OLED support (many thanks to @drashna):
   - Proper orientation
