@@ -408,7 +408,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case MACRO1:
       if (record->event.pressed) {
-        SEND_STRING("aqui el texto de la macro1\nque quieras pegar");
+        SEND_STRING("git commit /m @@");
       } else {
 
       }
