@@ -142,12 +142,6 @@ void rgb_matrix_indicators_user(void) {
         }
         break;
 
-      case _ADJUST:
-        for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 255, 153, 51);
-        }
-        break;
-
       default:
         if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
           for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
