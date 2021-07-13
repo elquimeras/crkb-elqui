@@ -360,17 +360,19 @@ void rgb_matrix_indicators_user(void) {
     if (timer_elapsed32(oled_timer) > 1500000) {
       oled_off();
       return;
-    }
-
-    #ifndef SPLIT_KEYBOARD
-      else { oled_on(); }
-    #endif
-
-    if (is_keyboard_master()) {
-      render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
-      render_status_secondary();
+      oled_on();
+
+      if (is_keyboard_master()) {
+        render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+      } else {
+        render_status_secondary();
+      }
     }
+
+    // #ifndef SPLIT_KEYBOARD
+    //   else { oled_on(); }
+    // #endif
   }
 #endif
 
