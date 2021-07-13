@@ -366,7 +366,7 @@ void rgb_matrix_indicators_user(void) {
       else { oled_on(); }
     #endif
 
-    if (is_master) {
+    if (is_keyboard_master()) {
       render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
       render_status_secondary();
