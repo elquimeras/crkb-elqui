@@ -33,6 +33,8 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   RGBRST,
+  OLEDON,
+  OLEDOFF,
   MACRO1,
   MACRO2
 };
@@ -91,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-      XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, RGBRST, RGB_TOG,                     KC_F1, KC_F2,  KC_F3,   KC_F4,   KC_F5,   KC_F6,\
+      XXXXXXX, OLEDON,  OLEDOFF, XXXXXXX, RGBRST, RGB_TOG,                     KC_F1, KC_F2,  KC_F3,   KC_F4,   KC_F5,   KC_F6,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_MOD,                      KC_F7, KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -306,6 +308,7 @@ void rgb_matrix_indicators_user(void) {
         0xa0, 0xa1, 0xa2, 0xa3, 0xa4,
         0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0};
     oled_write_P(corne_logo, false);
+
     oled_write_P(PSTR("corne"), false);
   }
 
@@ -358,10 +361,9 @@ void rgb_matrix_indicators_user(void) {
 
   void oled_task_user(void) {
     if (timer_elapsed32(oled_timer) > 1500000) {
-      oled_off();
-      return;
+      // oled_off();
     } else {
-      oled_on();
+      // oled_on();
 
       if (is_keyboard_master()) {
         render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
@@ -369,10 +371,6 @@ void rgb_matrix_indicators_user(void) {
         render_status_secondary();
       }
     }
-
-    // #ifndef SPLIT_KEYBOARD
-    //   else { oled_on(); }
-    // #endif
   }
 #endif
 
@@ -412,14 +410,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case MACRO1:
       if (record->event.pressed) {
-        SEND_STRING("git commit /m @@");
+        SEND_STRING("git commit /m @@ //no/verify");
       } else {
 
       }
       return false;
     case MACRO2:
       if (record->event.pressed) {
-        SEND_STRING("aqui el texto de la macro2\nque quieras pegar");
+        SEND_STRING("git diff HEAD ");
       } else {
 
       }
@@ -439,6 +437,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
+    case OLEDON:
+      #ifdef OLED_DRIVER_ENABLE
+        if (record->event.pressed) {
+          oled_on();
+        }
+      #endif
+    case OLEDOFF:
+      #ifdef OLED_DRIVER_ENABLE
+        if (record->event.pressed) {
+          oled_off();
+        }
+      #endif
   }
   return true;
 }
