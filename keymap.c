@@ -36,7 +36,8 @@ enum custom_keycodes {
   OLEDON,
   OLEDOFF,
   MACRO1,
-  MACRO2
+  MACRO2,
+  MACRO3,
 };
 
 // Dual function escape with left command
@@ -52,6 +53,7 @@ enum {
   TD_PRNB,
   TD_BRKA,
   TD_BRKB,
+  TD_QSTN,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -69,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_1,   KC_2,   KC_3,   KC_KP_ASTERISK,   SCMD(KC_7),   KC_BSPC,
+     KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_1,   KC_2,   KC_3,   KC_KP_ASTERISK,   SCMD(KC_7),   KC_RBRC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_LSFT, KC_AT, KC_QUOTE, XXXXXXX, KC_VOLU, LALT(KC_G),                   KC_4,    KC_5,   KC_6,   TD(TD_PRNA),    TD(TD_PRNB),    KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -85,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   TD(TD_CAPLOCK),  KC_LEFT,  KC_DOWN,  KC_RGHT,  MACRO1,  MACRO2,              KC_MINS, KC_EQL, RALT(KC_LBRC),  RALT(KC_RBRC), KC_PIPE, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-   LALT(KC_2), LSFT(KC_0), LSFT(KC_7), KC_LBRC, XXXXXXX, XXXXXXX,              KC_UNDS, KC_PLUS, RALT(KC_QUOT), RALT(KC_NUHS), KC_BSLS, KC_ENT,
+   LALT(KC_2), LSFT(KC_0), LSFT(KC_7), KC_LBRC, XXXXXXX, MACRO3,              TD(TD_QSTN), KC_PLUS, RALT(KC_QUOT), RALT(KC_NUHS), KC_BSLS, KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             KC_LGUI, LOWER, KC_SPC,    KC_SPC, KC_TRNS, KC_RALT
                                       //|--------------------------|  |--------------------------|
@@ -118,6 +120,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_PRNB] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, RALT(KC_NUHS)),
     [TD_BRKA] = ACTION_TAP_DANCE_DOUBLE(RALT(KC_LBRC), KC_GRV),
     [TD_BRKB] = ACTION_TAP_DANCE_DOUBLE(RALT(KC_RBRC), LSFT(KC_GRV)),
+    [TD_QSTN] = ACTION_TAP_DANCE_DOUBLE(KC_UNDS, LSFT(KC_EQL)),
 };
 
 int RGB_current_mode;
@@ -410,16 +413,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case MACRO1:
       if (record->event.pressed) {
-        SEND_STRING("git commit /m @@ //no/verify");
-      } else {
-
+        SEND_STRING("git commit /m @@");
       }
       return false;
     case MACRO2:
       if (record->event.pressed) {
+        SEND_STRING("git commit /m @@ //no/verify");
+      }
+      return false;
+    case MACRO3:
+      if (record->event.pressed) {
         SEND_STRING("git diff HEAD ");
-      } else {
-
       }
       return false;
     case RGBRST:
