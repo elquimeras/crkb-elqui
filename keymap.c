@@ -53,7 +53,6 @@ enum {
   TD_PRNB,
   TD_BRKA,
   TD_BRKB,
-  TD_QSTN,
   TD_SLASH,
 };
 
@@ -88,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   TD(TD_CAPLOCK),  KC_LEFT,  KC_DOWN,  KC_RGHT,  MACRO1,  MACRO2,              KC_MINS, KC_EQL, RALT(KC_LBRC),  RALT(KC_RBRC), KC_PIPE, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-   LALT(KC_2), LSFT(KC_0), TD(TD_SLASH), KC_LBRC, XXXXXXX, MACRO3,              TD(TD_QSTN), KC_PLUS, RALT(KC_QUOT), RALT(KC_NUHS), KC_BSLS, KC_ENT,
+   LALT(KC_2), LSFT(KC_0), TD(TD_SLASH), KC_LBRC, XXXXXXX, MACRO3,            KC_UNDS, KC_PLUS, RALT(KC_QUOT), RALT(KC_NUHS), KC_BSLS, KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             KC_LGUI, LOWER, KC_SPC,    KC_SPC, KC_TRNS, KC_RALT
                                       //|--------------------------|  |--------------------------|
@@ -121,8 +120,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_PRNB] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, RALT(KC_NUHS)),
     [TD_BRKA] = ACTION_TAP_DANCE_DOUBLE(RALT(KC_LBRC), KC_GRV),
     [TD_BRKB] = ACTION_TAP_DANCE_DOUBLE(RALT(KC_RBRC), LSFT(KC_GRV)),
-    [TD_QSTN] = ACTION_TAP_DANCE_DOUBLE(KC_UNDS, LSFT(KC_EQL)),
-    [TD_SLASH] = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_7), RALT(KC_NUBS))
+    [TD_SLASH] = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_7), RALT(KC_NUBS)),
 };
 
 int RGB_current_mode;
